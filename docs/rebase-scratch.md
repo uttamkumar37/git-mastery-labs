@@ -5,3 +5,5 @@
 - add fixup example
 
 - explain reword
+
+- final checklist
