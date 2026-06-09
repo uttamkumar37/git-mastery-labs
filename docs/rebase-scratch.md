@@ -1,1 +1,3 @@
 # Rebase Scratchpad
+
+- remember squash
