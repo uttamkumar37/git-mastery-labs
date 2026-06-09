@@ -39,6 +39,15 @@ public class UserService {
                 .toList();
     }
 
+    public List<User> search(UserSearchCriteria criteria) {
+        Objects.requireNonNull(criteria, "criteria must not be null");
+        return repository.findAll().stream()
+                .filter(user -> !criteria.activeOnly() || user.active())
+                .filter(user -> criteria.emailDomain() == null || user.email().endsWith("@" + criteria.emailDomain()))
+                .sorted(Comparator.comparing(User::email))
+                .toList();
+    }
+
     String normalizeEmail(String email) {
         if (email == null || email.isBlank()) {
             throw new ValidationException("Email must not be blank");
