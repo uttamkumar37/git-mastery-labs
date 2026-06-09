@@ -43,6 +43,6 @@ public class UserService {
         if (email == null || email.isBlank()) {
             throw new ValidationException("Email must not be blank");
         }
-        return email.trim().toLowerCase(Locale.ROOT);
+        return email.strip().toLowerCase(Locale.ROOT);
     }
 }
