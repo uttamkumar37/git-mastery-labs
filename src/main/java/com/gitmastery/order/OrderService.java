@@ -29,4 +29,10 @@ public class OrderService {
     public List<Order> findOrdersForUser(String userId) {
         return repository.findByUserId(userId);
     }
+
+    public List<OrderSummary> summarizeOrdersForUser(String userId) {
+        return repository.findByUserId(userId).stream()
+                .map(OrderSummary::from)
+                .toList();
+    }
 }
