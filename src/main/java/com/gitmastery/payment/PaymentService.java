@@ -25,7 +25,7 @@ public class PaymentService {
 
     public Money calculateTotal(Money subtotal, BigDecimal taxRate, Money discount) {
         validateCalculationInput(subtotal, taxRate, discount);
-        Money tax = subtotal.multiply(taxRate);
+        Money tax = subtotal.multiply(taxRate.movePointLeft(2));
         return subtotal.add(tax).subtract(discount);
     }
 
