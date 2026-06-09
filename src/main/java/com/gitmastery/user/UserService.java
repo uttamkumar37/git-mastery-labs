@@ -27,6 +27,9 @@ public class UserService {
     }
 
     public User deactivate(String userId) {
+        if (userId == null || userId.isBlank()) {
+            throw new ValidationException("User id must not be blank");
+        }
         User user = repository.findById(userId)
                 .orElseThrow(() -> new ValidationException("User not found: " + userId));
         return repository.save(user.deactivate());
