@@ -65,7 +65,7 @@ CONFIRM_PUSH=yes bash scripts/create-lab-branches.sh --push
 
 | Branch | Purpose |
 | --- | --- |
-| `main` | Stable project and all lab documentation. Must compile and pass tests. |
+| `main` | Stable production-ready branch for Git practice. Must compile and pass tests. |
 | `develop` | Integration branch for Gitflow practice. |
 | `feature/user-api` | User service feature work. |
 | `feature/order-api` | Order service feature work. |
