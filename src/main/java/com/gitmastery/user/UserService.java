@@ -43,6 +43,10 @@ public class UserService {
         if (email == null || email.isBlank()) {
             throw new ValidationException("Email must not be blank");
         }
-        return email.trim().toLowerCase(Locale.ROOT);
+        String normalized = email.trim().toLowerCase(Locale.ROOT);
+        if (!normalized.contains("@")) {
+            throw new ValidationException("Email must contain @");
+        }
+        return normalized;
     }
 }
