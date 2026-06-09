@@ -43,3 +43,7 @@ git switch main
         ## 8. Real Project Scenario
 
         A payment rounding regression appears and nobody remembers which commit caused it.
+
+## Bisect Branch Notes
+
+This branch intentionally breaks payment tax calculation so `git bisect run mvn -q test` can find the regression.
