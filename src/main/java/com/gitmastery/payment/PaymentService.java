@@ -39,5 +39,8 @@ public class PaymentService {
         if (discount == null || discount.isNegative()) {
             throw new ValidationException("Discount must not be negative");
         }
+        if (discount.amount().compareTo(subtotal.amount()) > 0) {
+            throw new ValidationException("Discount must not exceed subtotal");
+        }
     }
 }
