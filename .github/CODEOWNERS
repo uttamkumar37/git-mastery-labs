@@ -1,0 +1,16 @@
+# Default owner
+* @uttamkumar37
+
+# Documentation and lab material
+/docs/ @uttamkumar37
+/labs/ @uttamkumar37
+*.md @uttamkumar37
+
+# Java source and tests
+/src/ @uttamkumar37
+pom.xml @uttamkumar37
+
+# GitHub workflow and repository governance
+/.github/ @uttamkumar37
+/.github/workflows/ @uttamkumar37
+/scripts/ @uttamkumar37
