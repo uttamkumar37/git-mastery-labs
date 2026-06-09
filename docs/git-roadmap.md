@@ -19,3 +19,7 @@ Practice rebase, interactive rebase, cherry-pick, tags, release branches, hotfix
 ## Stage 5: Debugging And Internals
 
 Practice `bisect`, `blame`, `grep`, object inspection, refs, reflog, and index concepts. These skills separate command memorization from real Git understanding.
+
+## Develop Integration Notes
+
+- Collect feature branches here before release stabilization.
