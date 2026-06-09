@@ -99,19 +99,6 @@ PYREPLACE
 }
 
 create_tags() {
-  declare -A tag_messages=(
-    [v0.1.0]="Project foundation"
-    [v0.2.0]="Domain services and tests"
-    [v1.0.0-rc1]="Documentation release candidate"
-    [v1.0.0]="Complete Git mastery lab"
-  )
-  declare -A tag_grep=(
-    [v0.1.0]="chore: add Maven Java project foundation"
-    [v0.2.0]="feat: add backend domain services"
-    [v1.0.0-rc1]="docs: add Git learning roadmap and labs"
-    [v1.0.0]="chore: add GitHub Actions and lab automation"
-  )
-
   run git switch "$BASE_BRANCH" >/dev/null
   for tag in "${tags[@]}"; do
     if git rev-parse -q --verify "refs/tags/$tag" >/dev/null; then
@@ -122,11 +109,38 @@ create_tags() {
         continue
       fi
     fi
-    commit_sha="$(git log "$BASE_BRANCH" --grep="${tag_grep[$tag]}" --format=%H -n 1 || true)"
+    case "$tag" in
+      v0.1.0)
+        tag_message="Project foundation"
+        tag_grep="chore: add Maven Java project foundation"
+        ;;
+      v0.2.0)
+        tag_message="Domain services and tests"
+        tag_grep="feat: add backend domain services"
+        ;;
+      v1.0.0-rc1)
+        tag_message="Documentation release candidate"
+        tag_grep="docs: add Git learning roadmap and labs"
+        ;;
+      v1.0.0)
+        tag_message="Complete Git mastery lab"
+        tag_grep=""
+        ;;
+      *)
+        echo "No tag mapping for $tag" >&2
+        exit 1
+        ;;
+    esac
+
+    if [[ -n "$tag_grep" ]]; then
+      commit_sha="$(git log "$BASE_BRANCH" --grep="$tag_grep" --format=%H -n 1 || true)"
+    else
+      commit_sha="$(git rev-parse "$BASE_BRANCH")"
+    fi
     if [[ -z "$commit_sha" ]]; then
       commit_sha="$(git rev-parse "$BASE_BRANCH")"
     fi
-    run git tag -a "$tag" -m "${tag_messages[$tag]}" "$commit_sha"
+    run git tag -a "$tag" -m "$tag_message" "$commit_sha"
   done
 }
 
