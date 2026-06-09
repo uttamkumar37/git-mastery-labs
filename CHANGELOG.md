@@ -23,3 +23,9 @@ This project follows semantic versioning for lab practice.
 ### Added
 
 - Maven project skeleton and Git hygiene files.
+
+## Release Branch Checklist
+
+- Run `mvn test`.
+- Verify tags `v1.0.0-rc1` and `v1.0.0`.
+- Prepare release notes from `CHANGELOG.md`.
